@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>webassign</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+        <style>
+            body {
+                margin: auto;
+                text-align: center;
+            }
+            .container {
+                padding: 50px;
+                text-align: left;
+            }
+            .shake {
+                animation-name: shake;
+                animation-duration: 1s;
+                animation-fill-mode: both;
+            }
+            @keyframes shake {
+                0%, 100% {
+                    transform: translateX(0);
+                }
+                10%, 30%, 50%, 70%, 90% {
+                    transform: translateX(-10px);
+                }
+                20%, 40%, 60%, 80% {
+                    transform: translateX(10px);
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1>webassign</h1>
+        </header>
+        <article>
+            <h3>calculemistry volume 4.2 section 3</h3>
+            <div class="container">
+                <label for="tInput">Solve for x:<br><code>x = 5(7)(16)</code></label>
+                <br>
+                <br>
+                <textarea id="tInput"></textarea>
+                <br>
+                <br>
+                <button id="sButton">Submit</button>
+                <br>
+                <p id="par"></p>
+            </div>
+        </article>
+        <script>
+            $('#sButton').click(function() {
+                console.log($('#tInput').val());
+                if ($('#tInput').val() == '14^2') {
+                    $('#par').attr('style', 'color: green;');
+                    $('#par').text('Correct');
+                } else {
+                    $('#par').attr('style', 'color: red;');
+                    $('#par').text('Incorrect');
+                    $('#par').addClass('shake').on('animationend', function(e) {
+                        $(this).removeClass('shake').off('animationend');
+                    });
+                }
+            });
+            $('#tInput').click(function() {
+                $('#par').text('');
+            })
+        </script>
+    </body>
+</html>
